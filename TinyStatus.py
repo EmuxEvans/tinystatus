@@ -101,12 +101,11 @@ def df(n,a):
 U,Md="http://"+''.join(argv[2:3])+":"+''.join(argv[3:4]),argv[1][0]
 
 if Md == "s":
- for Sr in P(argv[4:]):
   # Don't ask self for a server list because self has not yet started server.
   # Otherwise, update P() with the output from sending known servers (including self)
   # to the remote server Sr.
-  try: Sr!=U and P( [ x for x in Sp(Sr).f(0,DB[0]+[U]) ] )
-  except Exception as E: print("Error while bootstrapping servers:",E)
+ try: P( [ x for Sr in P(argv[4:]) if Sr!=U for x in Sp(Sr).f(0,DB[0]+[U]) ] )
+ except Exception as E: print("Error while bootstrapping servers:",E)
  # Start server with lambda using terminal-provided hostname and port values.
  (lambda E:E.register_function(df,"f") or SV(E))(SS((argv[2],int(argv[3]))))
 elif Md in "ar":
@@ -118,6 +117,7 @@ elif Md in "puf":
  # In post or update mode, send list of follows to server to update local stream.
  # In find mode, send list of arguments after the target server as "find" strings.
  NM,Ft = M(argv[3],input(">")) if Md=='p' else[], argv[3:] if Md=="f" else DB[1]
+ # Can I compress this three-liner into two with a nested for expression? O_o
  for Url in Sp(argv[2]).f(0,DB[0]):
   try: Sp(Url).f(1,NM) and [AM(x) for x in Sp( Url ).f( 2, Ft )]
   except Exception as E: print("Error communicating with peer '",Url,"':",E)

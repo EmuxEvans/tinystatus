@@ -1,6 +1,7 @@
 # TinyStatus - A P2P short-status network you can fit in your email sig.
 by Cathal Garvey
-@onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;))
+
+@onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
 cathalgarvey@cathalgarvey.me
 https://gitorious.org/~cathalgarvey
 http://www.indiebiotech.com
