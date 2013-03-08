@@ -38,12 +38,12 @@ There are several modes of use in TinyStatus. One is for hosting a node/server,
 three are for posting/fetching from servers, and two are to directly add/remove
 "follows" from the local database.
 
-* Serve:  _python3 TinyStatus.py serve <hostname> <portnumber> <otherservers>_
-* Post:   _python3 TinyStatus.py post <server> <username>_
-* Update: _python3 update <server>_
-* Find:   _python3 find <server> findstring (findstring2..)_
-* Follow: _python3 addfollow follow1 (follow2..)_
-* Remove: _python3 remove follow1 (follow2..)_
+* Serve:  _python3 TinyStatus.py serve (hostname) (portnumber) (otherservers)_
+* Post:   _python3 TinyStatus.py post (server) (username)_
+* Update: _python3 update (server)_
+* Find:   _python3 find (server) (findstring(s))_
+* Follow: _python3 addfollow (follow(s))_
+* Remove: _python3 remove (follow(s))_
 
 You can follow any search string (technically a regex string, for the geeks),
 whether a username, hashtag, time, date, whatever. To see anything written by a
@@ -66,13 +66,14 @@ If you don't have a publicly visible hostname (most likely), read on:
 Included is the excellent "pagekite.py" script. To run this, you'll *also*
 need python 2 installed, because it doesn't work with modern Python, sadly. But,
 once you have python 2, you can use it to launch pagekite.py like this:
-* python2 pagekite.py <portnumber> <desiredsubdomain>.pagekite.me
+* python2 pagekite.py (portnumber) (desiredsubdomain).pagekite.me
+
 ..and the pagekite.py script will guide you through signing up for a free month
-of use and see if you can register mytinystatusID.pagekite.me as your server
+of use and see if you can register desiredsubdomain.pagekite.me as your server
 name.
 
 Then start your server like so:
-* python3 TinyStatus.py serve https://<desiredsubdomain>.pagekite.me <portnumber> <otherservers if any, space-delimited>
+* python3 TinyStatus.py serve https://(desiredsubdomain).pagekite.me <portnumber> <otherservers if any, space-delimited>
 
 The only rule is: Don't host a node *and* use posting/fetching in the same
 folder, or database conflicts may occur. If you want to host a node, copy the
