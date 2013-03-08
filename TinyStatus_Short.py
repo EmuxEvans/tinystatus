@@ -19,7 +19,7 @@ f=lambda n,a:(n<1 and P(a) or [U])or(n==1 and AM(a))or(n==2 and R(a))
 if Md == "s":
  try: P( [ x for Sr in P(argv[4:]) if Sr!=U for x in Sp(Sr).f(0,DB[0]+[U]) ] )
  except Exception as E: print("Error while bootstrapping servers:",E)
- (lambda E:E.register_function(f,"f") or SV(E))(SS((argv[2],int(argv[3]))))
+ (lambda E:E.register_function(f,"f") or SV(E))(SS(("localhost",int(argv[3]))))
 elif Md in "ar":
  C=F(argv[2:]) if Md=="a" else [DB[1].remove(x) for x in argv[2:] if x in F()]
 elif Md in "puf":

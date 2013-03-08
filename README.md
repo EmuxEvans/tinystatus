@@ -38,17 +38,12 @@ There are several modes of use in TinyStatus. One is for hosting a node/server,
 three are for posting/fetching from servers, and two are to directly add/remove
 "follows" from the local database.
 
-Serve:  python3 TinyStatus.py serve <hostname> <portnumber> <otherservers>
-
-Post:   python3 TinyStatus.py post <server> <username>
-
-Update: python3 update <server>
-
-Find:   python3 find <server> findstring (findstring2..)
-
-Follow: python3 addfollow follow1 (follow2..)
-
-Remove: python3 remove follow1 (follow2..)
+* Serve:  _python3 TinyStatus.py serve <hostname> <portnumber> <otherservers>_
+* Post:   _python3 TinyStatus.py post <server> <username>_
+* Update: _python3 update <server>_
+* Find:   _python3 find <server> findstring (findstring2..)_
+* Follow: _python3 addfollow follow1 (follow2..)_
+* Remove: _python3 remove follow1 (follow2..)_
 
 When adding follows, if you add "@user" you'll see anything by that user, and
 anything containing an @-message to that user. However, for the geeks out there,
@@ -57,15 +52,21 @@ hashtag, a keyword, or a time or day, if you like. However, a useful trick for
 those who are unaquainted with regular expressions: to see only posts by a user,
 follow "^@user", not "@user".
 
-When starting a server, you should provide the hostname to which other people
-will connect. So, while you can host your own with:
-python3 TinyStatus.py serve localhost 9999
-..only you can connect to the server at "http://localhost:9999", but others
-cannot because "localhost" is a special name for "this computer". If you have a
-static IP address and have configured port forwarding, use your IP address.
-Included is the excellent "pagekite" script which will offer you a way to route
-your way through the pagekite.net service if you really want to host a server
-from behind a firewall/NAT/mobile broadband.
+When starting a server, you'll probably want to use the hostname "localhost"
+unless you know what you're doing, and then find a way to bind your local port
+to a public address. Pick any unused port; a big number is a fair guess, I use
+9999 for mine. That'll allow you to connect to _yourself_ on
+http://localhost:9999, but that's not much use to your friends or the network!
+
+So, included is the excellent "pagekite.py" script. To run this, you'll *also*
+need python 2 installed, because it doesn't work with modern Python, sadly. But,
+once you have python 2, you can use it to launch pagekite.py like this:
+* python2 pagekite.py 9999 mytinystatusID.pagekite.me
+..and the pagekite.py script will guide you through signing up for a free month
+of use and see if you can register mytinystatusID.pagekite.me as your server
+name.
+
+To bootstrap your server, launch it with the name of another working server;
 
 The only rule is: Don't host a node *and* use posting/fetching in the same
 folder, or database conflicts may occur. If you want to host a node, copy the

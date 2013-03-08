@@ -107,7 +107,7 @@ if Md == "s":
  try: P( [ x for Sr in P(argv[4:]) if Sr!=U for x in Sp(Sr).f(0,DB[0]+[U]) ] )
  except Exception as E: print("Error while bootstrapping servers:",E)
  # Start server with lambda using terminal-provided hostname and port values.
- (lambda E:E.register_function(df,"f") or SV(E))(SS((argv[2],int(argv[3]))))
+ (lambda E:E.register_function(df,"f") or SV(E))(SS(("localhost",int(argv[3]))))
 elif Md in "ar":
  # C is a disposable variable and is probably not even necessary to make this work.
  C=F(argv[2:]) if Md=="a" else [DB[1].remove(x) for x in argv[2:] if x in F()]
