@@ -1,5 +1,5 @@
 # TinyStatus - A P2P short-status network you can fit in your email signature.
-by Cathal Garvey
+Copyright 2013 Cathal Garvey, License: GNU Affero General Public License v3
 
 @onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
 cathalgarvey@cathalgarvey.me
@@ -14,7 +14,7 @@ TinyStatus is a peer to peer microstatus server/client script written in pure
 python, in as few 80-character lines as I could manage.
 
 TinyStatus is heavily inspired by E.W. Felten's TinyP2P, code for which is
-included as per its CC-BY-NC-SA license for reference.
+included (as per its CC-BY-NC-SA license) for reference.
 
 Like TinyP2P, TinyStatus establishes a (small, poorly scaleable) network of
 servers hosting content that clients can poll and fetch from. Unlike TinyP2P,
@@ -29,13 +29,42 @@ servers in the course of normal activity.
 
 Unfortunately, TinyStatus is also a lot larger than TinyP2P; I attribute this to
 the fact that TinyP2P can take advantage of OS-level functions for management of
-locally served files, whereas TinyStatus requires code to manage a message
-database in-memory. While I could save statuses to small text files to achieve a
-result like TinyP2P, I think it's better to get efficiency and function than
-scrounge a few lines of code at the cost of constant hard drive read/write
-cycles. In addition, if HDD read/writes were common with TinyStatus, then I'd
-have a hard time running a personal server on a Raspberry Pi without wearing
-out the SD card! ;)
+locally served files, and TinyP2P doesn't contain multiline try:catch statements
+to prevent crashes due to bad server data (which would make attacking the
+network trivial).
+
+## How do I use TinyStatus?
+There are several modes of use in TinyStatus. One is for hosting a node/server,
+three are for posting/fetching from servers, and two are to directly add/remove
+"follows" from the local database.
+
+Serve:  python3 TinyStatus.py serve <hostname> <portnumber> <otherservers>
+Post:   python3 TinyStatus.py post <server> <username>
+Update: python3 update <server>
+Find:   python3 find <server> findstring (findstring2..)
+Follow: python3 addfollow follow1 (follow2..)
+Remove: python3 remove follow1 (follow2..)
+
+When adding follows, if you add "@user" you'll see anything by that user, and
+anything containing an @-message to that user. However, for the geeks out there,
+follows are simply regular expression search patterns: you can "follow" a
+hashtag, a keyword, or a time or day, if you like. However, a useful trick for
+those who are unaquainted with regular expressions: to see only posts by a user,
+follow "^@user", not "@user".
+
+When starting a server, you should provide the hostname to which other people
+will connect. So, while you can host your own with:
+python3 TinyStatus.py serve localhost 9999
+..only you can connect to the server at "http://localhost:9999", but others
+cannot because "localhost" is a special name for "this computer". If you have a
+static IP address and have configured port forwarding, use your IP address.
+
+The only rule is: Don't host a node *and* use posting/fetching in the same
+folder, or database conflicts may occur. If you want to host a node, copy the
+script into a new folder first.
+
+TinyStatus makes a file called "D", which contains the database, in the local
+folder.
 
 ## Why did you write this?
 TinyP2P was written in response to government proposals in the US to illegalise
