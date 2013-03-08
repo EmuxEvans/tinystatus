@@ -68,6 +68,11 @@ R=lambda l:sorted([x for y in [G(z) for z in l] for x in y])
 MessageOk = lambda x: H(x)<=PW and len(x[2])<151 and len(x[1])<25
 AM=lambda NM:(S([(NM if MessageOk(NM) else [])])or 1)and 1
 
+# U is only used in server mode. It uses [2:3] and [3:4] slicing to get args [2] and [3],
+# respectively, but calling ranges in this way avoids indexerrors when these args aren't given.
+# Md is "Mode", and is the first letter of the first argument.
+U,Md="http://"+''.join(argv[2:3])+":"+''.join(argv[3:4]),argv[1][0]
+
 # f takes mode n and argument(s) a.
 # a should always be a list, for starters.
 # n==0 => Share peer list: Send known peers to server, server returns updated known list.
@@ -95,11 +100,6 @@ def df(n,a):
 # Update: TinyStatus.py update server
 # Technically the commands can be shortened to the first character only.
 
-# U is only used in server mode. It uses [2:3] and [3:4] slicing to get args [2] and [3],
-# respectively, but calling ranges in this way avoids indexerrors when these args aren't given.
-# Md is "Mode", and is the first letter of the first argument.
-U,Md="http://"+''.join(argv[2:3])+":"+''.join(argv[3:4]),argv[1][0]
-
 if Md == "s":
   # Don't ask self for a server list because self has not yet started server.
   # Otherwise, update P() with the output from sending known servers (including self)
@@ -118,7 +118,7 @@ elif Md in "puf":
  # In find mode, send list of arguments after the target server as "find" strings.
  NM,Ft = M(argv[3],input(">")) if Md=='p' else[], argv[3:] if Md=="f" else DB[1]
  # Can I compress this three-liner into two with a nested for expression? O_o
- for Url in Sp(argv[2]).f(0,DB[0]):
+ for Url in Sp(argv[2]).f(0,DB[0]+argv[2:3]):
   try: Sp(Url).f(1,NM) and [AM(x) for x in Sp( Url ).f( 2, Ft )]
   except Exception as E: print("Error communicating with peer '",Url,"':",E)
 

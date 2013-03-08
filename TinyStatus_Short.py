@@ -14,8 +14,8 @@ G=lambda g='':[x for x in filter(lambda n:(g=='')or search(g,r(n)),S())]
 R=lambda l:sorted([x for y in [G(z) for z in l] for x in y])
 MessageOk = lambda x: H(x)<=PW and len(x[2])<151 and len(x[1])<25
 AM=lambda NM:(S([(NM if MessageOk(NM) else [])])or 1)and 1
-f=lambda n,a:(n<1 and P(a))or(n==1 and AM(a))or(n==2 and R(a))
 U,Md="http://"+''.join(argv[2:3])+":"+''.join(argv[3:4]),argv[1][0]
+f=lambda n,a:(n<1 and P(a) or [U])or(n==1 and AM(a))or(n==2 and R(a))
 if Md == "s":
  try: P( [ x for Sr in P(argv[4:]) if Sr!=U for x in Sp(Sr).f(0,DB[0]+[U]) ] )
  except Exception as E: print("Error while bootstrapping servers:",E)
@@ -24,7 +24,7 @@ elif Md in "ar":
  C=F(argv[2:]) if Md=="a" else [DB[1].remove(x) for x in argv[2:] if x in F()]
 elif Md in "puf":
  NM,Ft = M(argv[3],input(">")) if Md=='p' else[], argv[3:] if Md=="f" else DB[1]
- for Url in Sp(argv[2]).f(0,DB[0]):
+ for Url in Sp(argv[2]).f(0,DB[0]+argv[2:3]):
   try: Sp(Url).f(1,NM) and [AM(x) for x in Sp( Url ).f( 2, Ft )]
   except Exception as E: print("Error communicating with peer '",Url,"':",E)
  print('\n'.join([r(x) for x in S()]))
