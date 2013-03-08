@@ -45,28 +45,34 @@ three are for posting/fetching from servers, and two are to directly add/remove
 * Follow: _python3 addfollow follow1 (follow2..)_
 * Remove: _python3 remove follow1 (follow2..)_
 
-When adding follows, if you add "@user" you'll see anything by that user, and
-anything containing an @-message to that user. However, for the geeks out there,
-follows are simply regular expression search patterns: you can "follow" a
-hashtag, a keyword, or a time or day, if you like. However, a useful trick for
-those who are unaquainted with regular expressions: to see only posts by a user,
-follow "^@user", not "@user".
+You can follow any search string (technically a regex string, for the geeks),
+whether a username, hashtag, time, date, whatever. To see anything written by a
+user or said *about* that user, follow "@user". To see *only* stuff posted by that
+user, use "^@user".
 
-When starting a server, you'll probably want to use the hostname "localhost"
-unless you know what you're doing, and then find a way to bind your local port
-to a public address. Pick any unused port; a big number is a fair guess, I use
-9999 for mine. That'll allow you to connect to _yourself_ on
-http://localhost:9999, but that's not much use to your friends or the network!
+To post, specify the target host server and your desired username. There is *no*
+account control in this network, so anyone can impersonate anyone else. Sorry!
+You will be presented with a prompt for your message, which can be up to 150
+characters long.
 
-So, included is the excellent "pagekite.py" script. To run this, you'll *also*
+To search, use the find command with one or more search strings, which have the
+same format as "follow". To update follows, just specify the server.
+
+Servers always host on localhost, but the terminal command "hostname" is what is
+sent to remote servers as the hostname by which to look the local server up. So,
+when starting a server, use a hostname and port number that is publicly visible.
+If you don't have a publicly visible hostname (most likely), read on:
+
+Included is the excellent "pagekite.py" script. To run this, you'll *also*
 need python 2 installed, because it doesn't work with modern Python, sadly. But,
 once you have python 2, you can use it to launch pagekite.py like this:
-* python2 pagekite.py 9999 mytinystatusID.pagekite.me
+* python2 pagekite.py <portnumber> <desiredsubdomain>.pagekite.me
 ..and the pagekite.py script will guide you through signing up for a free month
 of use and see if you can register mytinystatusID.pagekite.me as your server
 name.
 
-To bootstrap your server, launch it with the name of another working server;
+Then start your server like so:
+* python3 TinyStatus.py serve https://<desiredsubdomain>.pagekite.me <portnumber> <otherservers if any, space-delimited>
 
 The only rule is: Don't host a node *and* use posting/fetching in the same
 folder, or database conflicts may occur. If you want to host a node, copy the
