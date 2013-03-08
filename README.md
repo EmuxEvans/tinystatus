@@ -58,6 +58,9 @@ python3 TinyStatus.py serve localhost 9999
 ..only you can connect to the server at "http://localhost:9999", but others
 cannot because "localhost" is a special name for "this computer". If you have a
 static IP address and have configured port forwarding, use your IP address.
+Included is the excellent "pagekite" script which will offer you a way to route
+your way through the pagekite.net service if you really want to host a server
+from behind a firewall/NAT/mobile broadband.
 
 The only rule is: Don't host a node *and* use posting/fetching in the same
 folder, or database conflicts may occur. If you want to host a node, copy the
