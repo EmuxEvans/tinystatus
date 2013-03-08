@@ -73,14 +73,12 @@ of use and see if you can register desiredsubdomain.pagekite.me as your server
 name.
 
 Then start your server like so:
-* python3 TinyStatus.py serve https://(desiredsubdomain).pagekite.me <portnumber> <otherservers if any, space-delimited>
+* python3 TinyStatus.py serve https://(desiredsubdomain).pagekite.me (portnumber) (otherserver(s))
 
 The only rule is: Don't host a node *and* use posting/fetching in the same
 folder, or database conflicts may occur. If you want to host a node, copy the
-script into a new folder first.
-
-TinyStatus makes a file called "D", which contains the database, in the local
-folder.
+script into a new folder first, optionally with your database file "D" that may
+contain a list of known peers.
 
 ## Why did you write this?
 TinyP2P was written in response to government proposals in the US to illegalise
