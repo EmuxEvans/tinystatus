@@ -14,7 +14,7 @@ for x in ('itertools takewhile count:os.path exists:hashlib sha256:time time ct'
 #from xmlrpc.server import SimpleXMLRPCServer
 #from re import search
 # Globals and aliases
-PW,Sp,SS,SV='001',ServerProxy,SimpleXMLRPCServer,lambda x:x.serve_forever()
+PW,Sp,SS,SV='0001',ServerProxy,SimpleXMLRPCServer,lambda x:x.serve_forever()
 
 # Transform a message list as a pretty message.
 r=lambda m:"@{}\t- on {}: {}".format(m[1],ctime(m[0])[:16],m[2])

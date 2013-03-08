@@ -2,7 +2,7 @@ for x in ('itertools takewhile count:os.path exists:hashlib sha256:time time ct'
 'ime:json dump dumps load loads:sys argv exit:xmlrpc.client ServerProxy:xmlrpc.'
 'server SimpleXMLRPCServer:re search').split(":"):
  exec('from {0} import {1}'.format(x.split()[0],','.join(x.split()[1:])))
-PW,Sp,SS,SV='001',ServerProxy,SimpleXMLRPCServer,lambda x:x.serve_forever()
+PW,Sp,SS,SV='0001',ServerProxy,SimpleXMLRPCServer,lambda x:x.serve_forever()
 r=lambda m:"@{}\t- on {}: {}".format(m[1],ctime(m[0])[:16],m[2])
 H=lambda m:sha256(bytes(dumps(m),'utf8')).hexdigest()
 GetNonce=lambda O,n:takewhile(lambda x:H(O[:3]+[x])>n,count())

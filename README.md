@@ -45,6 +45,10 @@ three are for posting/fetching from servers, and two are to directly add/remove
 * Follow: _python3 addfollow (follow(s))_
 * Remove: _python3 remove (follow(s))_
 
+I will intermittantly be hosting a TinyStatus server at https://tinystatus.pagekite.me
+which you can use to get started and try it out. Consider following "^@onetruecathal"
+to get updates from me or anyone pretending to be me.
+
 You can follow any search string (technically a regex string, for the geeks),
 whether a username, hashtag, time, date, whatever. To see anything written by a
 user or said *about* that user, follow "@user". To see *only* stuff posted by that
