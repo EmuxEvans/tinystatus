@@ -1,10 +1,10 @@
 # TinyStatus - A P2P short-status network you can fit in your email signature.
 Copyright 2013 Cathal Garvey, License: GNU Affero General Public License v3
 
-@onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
-cathalgarvey@cathalgarvey.me
-https://gitorious.org/~cathalgarvey
-http://www.indiebiotech.com
+* @onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
+* cathalgarvey@cathalgarvey.me
+* https://gitorious.org/~cathalgarvey
+* http://www.indiebiotech.com
 
 ## Dedication
 Pat Rabbitte: You won't prevent us from speaking, only yourself from hearing.
