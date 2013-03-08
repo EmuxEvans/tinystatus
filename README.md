@@ -38,12 +38,12 @@ There are several modes of use in TinyStatus. One is for hosting a node/server,
 three are for posting/fetching from servers, and two are to directly add/remove
 "follows" from the local database.
 
-Serve:  python3 TinyStatus.py serve <hostname> <portnumber> <otherservers>
-Post:   python3 TinyStatus.py post <server> <username>
-Update: python3 update <server>
-Find:   python3 find <server> findstring (findstring2..)
-Follow: python3 addfollow follow1 (follow2..)
-Remove: python3 remove follow1 (follow2..)
+  Serve:  python3 TinyStatus.py serve <hostname> <portnumber> <otherservers>
+  Post:   python3 TinyStatus.py post <server> <username>
+  Update: python3 update <server>
+  Find:   python3 find <server> findstring (findstring2..)
+  Follow: python3 addfollow follow1 (follow2..)
+  Remove: python3 remove follow1 (follow2..)
 
 When adding follows, if you add "@user" you'll see anything by that user, and
 anything containing an @-message to that user. However, for the geeks out there,
