@@ -3,6 +3,7 @@ Copyright 2013 Cathal Garvey, License: GNU Affero General Public License v3
 
 * @onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
 * cathalgarvey@cathalgarvey.me
+* https://www.gittip.com/onetruecathal/ Gittip me?
 * https://gitorious.org/~cathalgarvey
 * http://www.indiebiotech.com
 
@@ -40,14 +41,22 @@ three are for posting/fetching from servers, and two are to directly add/remove
 
 * Serve:  _python3 TinyStatus.py serve (hostname) (portnumber) (otherservers)_
 * Post:   _python3 TinyStatus.py post (server) (username)_
-* Update: _python3 update (server)_
-* Find:   _python3 find (server) (findstring(s))_
-* Follow: _python3 addfollow (follow(s))_
-* Remove: _python3 remove (follow(s))_
+* Update: _python3 TinyStatus.py update (server)_
+* Find:   _python3 TinyStatus.py find (server) (findstring(s))_
+* Follow: _python3 TinyStatus.py addfollow (follow(s))_
+* Remove: _python3 TinyStatus.py remove (follow(s))_
 
-I will intermittantly be hosting a TinyStatus server at https://tinystatus.pagekite.me
-which you can use to get started and try it out. Consider following "^@onetruecathal"
+I host a test-server at https://cathalgarvey.pythonanywhere.com/tinystatus/api
+which can be used to get started and try it out. Consider following "^@onetruecathal"
 to get updates from me or anyone pretending to be me.
+
+The test server uses the more advanced code contained in the
+tinystatus_server_xmlrpc_wsgi.py file, and requires the pyramid web framework to
+be installed as well as pyramid_rpc, a separate package.
+If you plan to run your own, it is highly recommended that you also install and
+use defusedxml to prevent people bombing your server with malicious XML.
+However, the WSGI server, not being constrained to a certain length, is far more
+advanced (not saying much) than the TinyStatus built-in server.
 
 You can follow any search string (technically a regex string, for the geeks),
 whether a username, hashtag, time, date, whatever. To see anything written by a
@@ -65,24 +74,18 @@ same format as "follow". To update follows, just specify the server.
 Servers always host on localhost, but the terminal command "hostname" is what is
 sent to remote servers as the hostname by which to look the local server up. So,
 when starting a server, use a hostname and port number that is publicly visible.
-If you don't have a publicly visible hostname (most likely), read on:
-
-Included is the excellent "pagekite.py" script. To run this, you'll *also*
-need python 2 installed, because it doesn't work with modern Python, sadly. But,
-once you have python 2, you can use it to launch pagekite.py like this:
-* python2 pagekite.py (portnumber) (desiredsubdomain).pagekite.me
-
-..and the pagekite.py script will guide you through signing up for a free month
-of use and see if you can register desiredsubdomain.pagekite.me as your server
-name.
-
-Then start your server like so:
-* python3 TinyStatus.py serve https://(desiredsubdomain).pagekite.me (portnumber) (otherserver(s))
-
 The only rule is: Don't host a node *and* use posting/fetching in the same
 folder, or database conflicts may occur. If you want to host a node, copy the
 script into a new folder first, optionally with your database file "D" that may
 contain a list of known peers.
+
+If you don't have a publicly visible hostname (most likely), you can host a
+server online using the included WSGI application. For example, you can copy/paste
+the WSGI application code directly into a PythonAnywhere.com wsgi config file,
+and it will host an SSL-secured webapp TinyStatus server for you. However, you'll
+first have to open up a bash shell in the "consoles" dialog of PythonAnywhere, and
+type "pip-2.7 install --user pyramid_rpc defusedxml" to install the required
+dependencies.
 
 ## Why did you write this?
 TinyP2P was written in response to government proposals in the US to illegalise
