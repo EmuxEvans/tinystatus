@@ -28,11 +28,12 @@ network; users can connect to arbitrary servers and post their statuses, which
 will be distributed among other servers as transactions occur between the
 servers in the course of normal activity.
 
-Unfortunately, TinyStatus is also a lot larger than TinyP2P; I attribute this to
-the fact that TinyP2P can take advantage of OS-level functions for management of
-locally served files, and TinyP2P doesn't contain multiline try:catch statements
-to prevent crashes due to bad server data (which would make attacking the
-network trivial).
+Unfortunately, TinyStatus is also a lot larger than TinyP2P; I attribute this to:
+* TinyP2P can take advantage of OS-level functions for management of
+  locally served files.
+* TinyP2P doesn't contain multiline try:catch statements to prevent crashes due
+  to bad server data (which would make attacking the network trivial).
+* TinyStatus includes anti-flood/anti-spam features not required in TinyP2P.
 
 ## How do I use TinyStatus?
 There are several modes of use in TinyStatus. One is for hosting a node/server,
@@ -46,30 +47,18 @@ three are for posting/fetching from servers, and two are to directly add/remove
 * Follow: _python3 TinyStatus.py addfollow (follow(s))_
 * Remove: _python3 TinyStatus.py remove (follow(s))_
 
-I host a test-server at https://cathalgarvey.pythonanywhere.com/tinystatus/api
-which can be used to get started and try it out. Consider following "^@onetruecathal"
-to get updates from me or anyone pretending to be me.
-
-The test server uses the more advanced code contained in the
-tinystatus_server_xmlrpc_wsgi.py file, and requires the pyramid web framework to
-be installed as well as pyramid_rpc, a separate package.
-If you plan to run your own, it is highly recommended that you also install and
-use defusedxml to prevent people bombing your server with malicious XML.
-However, the WSGI server, not being constrained to a certain length, is far more
-advanced (not saying much) than the TinyStatus built-in server.
-
 You can follow any search string (technically a regex string, for the geeks),
 whether a username, hashtag, time, date, whatever. To see anything written by a
 user or said *about* that user, follow "@user". To see *only* stuff posted by that
 user, use "^@user".
 
+To search, use the find command with one or more search strings, which have the
+same format as "follow". To update follows, just specify the server.
+
 To post, specify the target host server and your desired username. There is *no*
 account control in this network, so anyone can impersonate anyone else. Sorry!
 You will be presented with a prompt for your message, which can be up to 150
 characters long.
-
-To search, use the find command with one or more search strings, which have the
-same format as "follow". To update follows, just specify the server.
 
 Servers always host on localhost, but the terminal command "hostname" is what is
 sent to remote servers as the hostname by which to look the local server up. So,
@@ -79,14 +68,6 @@ folder, or database conflicts may occur. If you want to host a node, copy the
 script into a new folder first, optionally with your database file "D" that may
 contain a list of known peers.
 
-If you don't have a publicly visible hostname (most likely), you can host a
-server online using the included WSGI application. For example, you can copy/paste
-the WSGI application code directly into a PythonAnywhere.com wsgi config file,
-and it will host an SSL-secured webapp TinyStatus server for you. However, you'll
-first have to open up a bash shell in the "consoles" dialog of PythonAnywhere, and
-type "pip-2.7 install --user pyramid_rpc defusedxml" to install the required
-dependencies.
-
 ## Why did you write this?
 TinyP2P was written in response to government proposals in the US to illegalise
 file-sharing protocols. The aim of the script was to demonstrate that, with P2P
@@ -94,41 +75,25 @@ filesharing reduced down to 15 lines of code which will fit nicely in an email
 signature, there was little hope that any level of regulation would work. Big
 servers might die, but a thousand TinyP2Ps or their equivalents would bloom.
 
-In Ireland, there is a rather disgusting political campaign in progress to try
-and regulate Free Speech (which is already lacking in Ireland) on social
-networks. The rhetoric is that social networks like Twitter and (ugh) Facebook
-allow this new phenomenon of anonymous bullying called "cyberbullying" which was
-somehow not a problem in the prior decade's worth of internet use, nor in the
-decade before that of ubiquitous SMS messaging, nor for centuries before that
-with the postal system.
+When TinyStatus was written, there was a nasty political campaign to attack free
+speech online under the guise of (as usual) "protecting children". Among the
+tactics employed was a hyping-up of "cyberbullying" (still ongoing) and a
+"pity me" campaign of politicians saying how hurt they felt when people criticised
+their pro-austerity policies on Twitter. In a press release asking for commentary 
+on "What to do" (not "Should?", but "What?") about social networking, a government
+working group described "Unfettered Commentary" as if it were a problem requiring
+a solution.
 
-To push this agenda, Irish politicians have taken to blaming every suicide in
-the country on cyberbullying, transforming the loss of a person into a political
-tool. They are also attempting to paint social networking as a threat to social
-stability: in a press release asking for commentary on "What to do" (not
-"Should?", but "What?") about social networking, a government working group
-described "Unfettered Commentary" as if it were a problem requiring a solution.
+Like TinyP2P, I wrote TinyStatus so that it would be small enough to disseminate
+trivially in fora, emails and even printed on paper. It was my "submission"
+to the public consultation on Free Speech on Social Media (not the actual name
+of the consultation, much as it should have been).
 
-The reason for this is pretty simple: Twitter and (ugh) Facebook allow Irish
-citizens to share the burden of oversight upon their government. Word-of-mouth
-has become so swift and absolute in Ireland, that every revelation of corruption
-and false democracy in Ireland is coming to light instantly. Our wealthy,
-austerity-pushing government don't like being told that their policies don't
-work, never have worked, and never will work. They don't like to be called out
-in public, in front of other citizens. They don't like mediums where we can talk
-back: they want us to live in a world where they can silence our questions, and
-provide only the answers they want to give in a one-way manner. They want their
-podium back.
-
-I plan to make a submission to their panel, consisting of this script and some
-brief notes on why regulation of free speech will not only be an injust and
-embarrassing imposition on the citizenry of Ireland, but that it will do nothing
-to stop us from criticising their terrible policies in public, on social
-networks that we will build if necessary to prevent their censorship.
-
-Besides, P2P is awesome. I have been meaning for some time to bulid a P2P
-twitter, although I actually want to make a real, workable, DHT-based status
-network incorporating pubkey authentication of users.
+Nobody took any notice of TinyStatus, of course, but it was a fun project, and
+for me it was part of my maturation to realising the intense political nature
+of our ability to program our own computers. Programming allows us to write our way
+out of some forms of oppression. It should be seen as a key democratic skill in
+the modern era.
 
 ## That code is HIDEOUS
 You think it's bad now? Look back through the commits to when I was trying to
@@ -163,45 +128,27 @@ more far costly to the spammer than it would be without tokens!
 
 ## Platforms?
 TinyStatus is written in pure Python 3, so it should run on all major platforms
-provided they have Python 3 installed.
-
-If you count iPhones as "platforms" and not simply "Tiny Steve Jobs", then
-you're out of luck, because that "Platform" doesn't allow anything not
-personally vetted by the real owners of the phones: Apple.
-
-Android, on the other hand, can be loaded with Python 3 through the Android
-Scripting Layer, although because I'm too lazy to investigate options for a
-graphical interface or any other such niceities, you'll have to make do with the
-terminal interface.
+provided they have Python 3 installed. It only uses modules and functions
+distributed as part of the Python 3 core.
 
 ## Improvements?
-A lot of improvements can be made with third-party modules, but TinyStatus must
-be standalone, so only native library code or ubiquitous addons should be
-considered.
+For the purposes of this section, let's pretend code brevity is no longer a concern.
 
-TinyStatus uses Python's built-in XMLRPC system for servers and clients. It's a
-beautifully simple system for establishing a networking protocol, but XML itself
-has huge overheads for data like TinyStatus; the XML formatting is likely to be
-many times the size of most requests. JSON-RPC would be a much more suitable
-format, but Python doesn't have a builtin JSON-RPC library.
+A lot of improvements can be made with third-party modules, but "politically",
+TinyStatus must be standalone, so only native library code or ubiquitous addons
+should be considered.
 
-If one were to include PyCrypto in the list of requirements, a 10-20 extra lines
-of code could implement pubkey authentication so that users couldn't simply
-falsify their names and post as other users. This would require that servers
-remember which pubkey they first saw used by which usernames, and thereafter
-only honour messages signed by the same pubkey. The main problems are the
-availability of PyCrypto, which is not included in Python by default, and
-compilation of PyCrypto for smaller platforms that cannot compile their own code
-easily, like Android (I'm stunned that there's so little effort put into putting
-"make" on Android).
+Still, here are some immediate and obvious improvements:
 
-Additionally, if PyCrypto was being used anyway, one could encrypt the network
-traffic, which would provide a small measure of protection against network
-analysis to determine who is the author of what messages, and who follows who.
+* Use of SQLite3 for databasing instead of the flat file.
+* Storing known servers, scoring of servers by reliability.
+* Adding a TOFU (trust-on-first-use) public-key system for authentication.
+* Use of a simple federation protocol or DHT for servers to minimise traffic.
+* Expiry of old data.
+* Rewrite in RPython.
 
-Fundamentally though, TinyStatus is a limited architecture; without a more
-advanced method of organising the network, scaling TinyStatus beyond a few tens
-of servers is likely to lead to massive congestion of server traffic and very
-slow clients. Making a twitter-killer was never the point; it can be done, but
-unless our glorious leaders decide to attack free speech on Twitter, there is
-little incentive to do so right now.
+If we ignore avoiding third-party code or code that won't compile easily on embedded:
+
+* PyNaCl for authentication and encryption of private messages.
+* JSON-RPC instead of XMLRPC, or Flask mini-webapps hosted through Pagekite/similar
+* Wordpress server plugin? :)
