@@ -3,7 +3,7 @@ Copyright 2013 Cathal Garvey, License: GNU Affero General Public License v3
 
 * @onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
 * cathalgarvey@cathalgarvey.me
-* https://www.gittip.com/onetruecathal/ Gittip me?
+* gittip: [![gittip](https://img.shields.io/gittip/onetruecathal.svg)](https://www.gittip.com/onetruecathal/)
 * https://gitorious.org/~cathalgarvey
 * http://www.indiebiotech.com
 
