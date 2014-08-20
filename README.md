@@ -4,7 +4,7 @@ Copyright 2013 Cathal Garvey, License: GNU Affero General Public License v3
 
 * @onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
 * cathalgarvey@cathalgarvey.me
-* https://www.gittip.com/onetruecathal Gittip me?
+* gittip: [![gittip](https://img.shields.io/gittip/onetruecathal.svg)](https://www.gittip.com/onetruecathal/)
 * https://gitorious.org/~cathalgarvey
 * http://www.indiebiotech.com
 
@@ -148,7 +148,7 @@ Still, here are some immediate and obvious improvements:
 * Adding a TOFU (trust-on-first-use) public-key system for authentication.
 * Use of a simple federation protocol or DHT for servers to minimise traffic.
 * Expiry of old data.
-* Rewrite in RPython.
+* Rewrite in RPython for potential native compilation
 
 If we ignore avoiding third-party code or code that won't compile easily on embedded:
 
