@@ -1,9 +1,10 @@
-# TinyStatus - A P2P short-status network you can fit in your email signature.
+# TinyStatus
+### A P2P short-status network you can fit in your email signature.
 Copyright 2013 Cathal Garvey, License: GNU Affero General Public License v3
 
 * @onetruecathal (on Twitter/TinyStatus, but the latter has no auth! ;) )
 * cathalgarvey@cathalgarvey.me
-* https://www.gittip.com/onetruecathal/ Gittip me?
+* https://www.gittip.com/onetruecathal Gittip me?
 * https://gitorious.org/~cathalgarvey
 * http://www.indiebiotech.com
 
@@ -40,12 +41,12 @@ There are several modes of use in TinyStatus. One is for hosting a node/server,
 three are for posting/fetching from servers, and two are to directly add/remove
 "follows" from the local database.
 
-* Serve:  _python3 TinyStatus.py serve (hostname) (portnumber) (otherservers)_
-* Post:   _python3 TinyStatus.py post (server) (username)_
-* Update: _python3 TinyStatus.py update (server)_
-* Find:   _python3 TinyStatus.py find (server) (findstring(s))_
-* Follow: _python3 TinyStatus.py addfollow (follow(s))_
-* Remove: _python3 TinyStatus.py remove (follow(s))_
+* Serve:  `python3 TinyStatus.py serve (hostname) (portnumber) (otherservers)`
+* Post:   `python3 TinyStatus.py post (server) (username)`
+* Update: `python3 TinyStatus.py update (server)`
+* Find:   `python3 TinyStatus.py find (server) (findstring(s))`
+* Follow: `python3 TinyStatus.py addfollow (follow(s))`
+* Remove: `python3 TinyStatus.py remove (follow(s))`
 
 You can follow any search string (technically a regex string, for the geeks),
 whether a username, hashtag, time, date, whatever. To see anything written by a
@@ -75,38 +76,38 @@ filesharing reduced down to 15 lines of code which will fit nicely in an email
 signature, there was little hope that any level of regulation would work. Big
 servers might die, but a thousand TinyP2Ps or their equivalents would bloom.
 
-When TinyStatus was written, there was a nasty political campaign to attack free
-speech online under the guise of (as usual) "protecting children". Among the
-tactics employed was a hyping-up of "cyberbullying" (still ongoing) and a
-"pity me" campaign of politicians saying how hurt they felt when people criticised
-their pro-austerity policies on Twitter. In a press release asking for commentary 
-on "What to do" (not "Should?", but "What?") about social networking, a government
-working group described "Unfettered Commentary" as if it were a problem requiring
-a solution.
+When TinyStatus was written, there was a nasty political campaign in Ireland to
+attack free speech online under the guise of "protecting children". Consultations
+were opened to tackle the constructed problem of "unfettered commentary", also
+known as "Freedom of Speech". Twitter, in particular, came under fire from public
+figures dissatisfied with receiving criticism through the medium.
 
 Like TinyP2P, I wrote TinyStatus so that it would be small enough to disseminate
 trivially in fora, emails and even printed on paper. It was my "submission"
-to the public consultation on Free Speech on Social Media (not the actual name
-of the consultation, much as it should have been).
+to the aforementioned public consultation.
 
 Nobody took any notice of TinyStatus, of course, but it was a fun project, and
-for me it was part of my maturation to realising the intense political nature
+for me it was part of my maturation to realising the innately political nature
 of our ability to program our own computers. Programming allows us to write our way
 out of some forms of oppression. It should be seen as a key democratic skill in
 the modern era.
 
 ## That code is HIDEOUS
 You think it's bad now? Look back through the commits to when I was trying to
-horseshoe in some object oriented programming. Making classes in as few lines as
-possible leads to the ugliest possible code.
+horseshoe in some object oriented programming. At the time I didn't even know
+how to use `type` to create dynamically generated classes, and in the best case
+Python's extremely limited lambda expressions made things complicated, so my
+approach was pretty farcical. I fell back to functional pretty quickly and never
+looked back.
 
-But yes, in the interest of fitting as much useful code into 80 characters as is
+In the interest of fitting as much useful code into 80 characters as is
 humanly possible, I compromised a great deal on code readability. Sorry!
+You can always use the "readable" version.
 
 ## Spam?
-Oh yea! TinyP2P had a hmaccing system for using a password to authenticate to
-small networks, which was really clever (but probably vulnerable to replay
-attacks, and didn't encrypt traffic at all).
+TinyP2P had a hmaccing system for using a password to authenticate to
+small networks, which was really clever (but vulnerable to replay attacks,
+and didn't encrypt traffic at all).
 
 I decided to hack that out, because a password isn't much use to a microstatus
 network in my opinion. However, because TinyStatus allows posting to remote
@@ -124,12 +125,14 @@ a few seconds, varying randomly between messages.
 
 This means that someone wanting to send a hundred new messages will need to
 spend about five hundred seconds generating useful tokens. It's doable, but it's
-more far costly to the spammer than it would be without tokens!
+more far costly to the spammer than it would be without tokens! In the absence
+of valid tokens, recipient nodes simply discard messages.
 
 ## Platforms?
 TinyStatus is written in pure Python 3, so it should run on all major platforms
-provided they have Python 3 installed. It only uses modules and functions
-distributed as part of the Python 3 core.
+provided they have Python 3 installed including Android. It only uses modules
+and functions distributed as part of the Python 3 core (this is deliberate, though
+limiting).
 
 ## Improvements?
 For the purposes of this section, let's pretend code brevity is no longer a concern.
@@ -151,4 +154,4 @@ If we ignore avoiding third-party code or code that won't compile easily on embe
 
 * PyNaCl for authentication and encryption of private messages.
 * JSON-RPC instead of XMLRPC, or Flask mini-webapps hosted through Pagekite/similar
-* Wordpress server plugin? :)
+* Wordpress "supernode" plugin!
